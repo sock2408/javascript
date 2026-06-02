@@ -2,73 +2,100 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Text</title>
+    <title>Сообщения</title>
     <style>
         body {
+            margin: 10px auto;
+            width: 470px;
             background: linear-gradient(135deg, #fff0f5 0%, #ffe4e9 100%);
             min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            font-family: system-ui, -apple-system, sans-serif;
-            margin: 0;
             padding: 20px;
         }
 
-        #text {
-            font-size: 24px;
-            font-weight: 500;
+        h1 {
+            font-size: 1.5em;
+            margin-bottom: 20px;
             color: #b14a6b;
-            background: white;
-            padding: 20px 40px;
-            border-radius: 60px;
-            margin-top: 30px;
-            box-shadow: 0 8px 20px rgba(232, 122, 156, 0.15);
             text-align: center;
         }
 
-        #hider {
-            background: #e87a9c;
-            color: white;
+        h3 {
+            margin: 0;
+            padding-bottom: .3em;
+            padding-right: 20px;
+            font-size: 1.1em;
+            color: #b14a6b;
+        }
+
+        p {
+            margin: 0;
+            padding: 0 0 .5em;
+            color: #5a3a2a;
+        }
+
+        .pane {
+            background: #fff5f7;
+            padding: 10px 20px 10px;
+            border-top: solid 2px #e87a9c;
+            border-radius: 16px;
+            position: relative;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 12px rgba(232, 122, 156, 0.1);
+        }
+
+        .remove-button {
+            position: absolute;
+            font-size: 110%;
+            top: 10px;
+            color: #e87a9c;
+            right: 15px;
+            display: block;
+            width: 24px;
+            height: 24px;
             border: none;
-            padding: 12px 28px;
-            font-size: 16px;
-            font-weight: 600;
-            border-radius: 40px;
+            background: transparent;
             cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(232, 122, 156, 0.3);
+            border-radius: 50%;
+            transition: all 0.2s ease;
         }
 
-        #hider:hover {
-            background: #b14a6b;
-            transform: scale(1.02);
-            box-shadow: 0 6px 16px rgba(232, 122, 156, 0.4);
-        }
-
-        #hider:active {
-            transform: scale(0.98);
+        .remove-button:hover {
+            font-weight: bold;
+            color: #b14a6b;
+            background: #ffe0e8;
+            transform: scale(1.1);
         }
     </style>
 </head>
 <body>
-    <input type="button" id="hider" value="Спрятать текст">
-    <div id="text">Текст</div>
+    <h1>Сообщения</h1>
+    <div id="messages-container">
+        <div class="pane">
+            <h2>Лошадь</h2>
+            <p>Домашняя лошадь — животное семейства непарнокопытных, одомашненный и единственный сохранившийся подвид дикой лошади, вымершей в дикой природе, за исключением небольшой популяции лошади Пржевальского.</p>
+            <button class="remove-button">[x]</button>
+        </div>
+        <div class="pane">
+            <h2>Осёл</h2>
+            <p>Домашний осёл или ишак — одомашненный подвид дикого осла, сыгравший важную историческую роль в развитии хозяйства и культуры человека. Все одомашненные ослы относятся к африканским ослам.</p>
+            <button class="remove-button">[x]</button>
+        </div>
+        <div class="pane">
+            <h2>Корова, а также пара слов о диком быке, о волах и о тёлках.</h2>
+            <p>Корова — самка домашнего быка, одомашненного подвида дикого быка, парнокопытного жвачного животного семейства полорогих. Самцы вида называются быками, молодняк — телятами, кастрированные самцы — волами. Молодых (до первой стельности) самок называют тёлками.</p>
+            <button class="remove-button">[x]</button>
+        </div>
+    </div>
 
     <script>
         'use strict';
 
-        const button = document.getElementById('hider');
-        const text = document.getElementById('text');
+        const container = document.getElementById('messages-container');
         
-        button.addEventListener('click', () => {
-            if (text.style.display === 'none') {
-                text.style.display = 'block';
-                button.value = 'Спрятать текст';
-            } else {
-                text.style.display = 'none';
-                button.value = 'Показать текст';
+        container.addEventListener('click', (event) => {
+            if (event.target.classList.contains('remove-button')) {
+                const pane = event.target.closest('.pane');
+                pane.remove();
             }
         });
     </script>
