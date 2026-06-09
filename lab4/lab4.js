@@ -32,7 +32,7 @@ export class Book {
     }
 
     set pubYear(value) {
-        if (value <= 0) {
+        if (typeof value !== 'number' || value <= 0) {
             throw new Error('Год издания должен быть положительным числом');
         }
         this._pubYear = value;
@@ -43,27 +43,40 @@ export class Book {
     }
 
     set price(value) {
-        if (value <= 0) {
+        if (typeof value !== 'number' || value <= 0) {
             throw new Error('Цена должна быть положительным числом');
         }
         this.#price = value;
     }
     /**
-    
+    * Выводит название и цену книги в консоль.
     */
     show() {
         console.log(`${this.title}, ${this.#price}`);
     }
-
+/**
+ * Сравнивает книги по году издания.
+ * @param {Book} a Первая книга.
+ * @param {Book} b Вторая книга.
+ * @id70533735 (@returns) {number}
+ */
     static compare(a, b) {
         return a._pubYear - b._pubYear;
     }
 }
-
+/**
+ * Проверяет, пуст ли объект.
+ * @param {Object} obj Проверяемый объект.
+ * @id70533735 (@returns) {boolean}
+ */
 export function isEmpty(obj) {
     return Reflect.ownKeys(obj).length === 0;
 }
-
+/**
+ * Добавляет объекту методы работы с className.
+ * @param {Object} obj Объект.
+ * @id70533735 (@returns) {Object}
+ */
 export function addClassMethods(obj) {
     obj.addClass = function(cls) {
         const classes = this.className ? this.className.split(' ') : [];
@@ -86,13 +99,20 @@ export function addClassMethods(obj) {
 
     return obj;
 }
-
+/**
+ * Возвращает количество секунд с начала текущего дня.
+ * @id70533735 (@returns) {number}
+ */
 export function getSecondsToday() {
     const now = new Date();
     const start = new Date(now.getFullYear(), now.getMonth(), now.getDate());
     return Math.floor((now - start) / 1000);
 }
-
+/**
+ * Форматирует дату в строку дд.мм.гг.
+ * @param {Date} date Дата.
+ * @id70533735 (@returns) {string}
+ */
 export function formatDate(date) {
     const day = String(date.getDate()).padStart(2, '0');
     const month = String(date.getMonth() + 1).padStart(2, '0');
