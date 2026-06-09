@@ -1,25 +1,25 @@
 'use strict';
 
 export class Book {
-    title;
+    _title;
     _pubYear;
     #price;
 
     constructor(title, pubYear, price) {
         this.title = title;
-        this._pubYear = pubYear;
-        this.#price = price;
+        this.pubYear = pubYear;
+        this.price = price;
     }
 
     set title(value) {
         if (value.trim() === '') {
             throw new Error('Название книги не может быть пустой строкой');
         }
-        this.title = value;
+        this._title = value;
     }
 
     get title() {
-        return this.title;
+        return this._title;
     }
 
     get pubYear() {
