@@ -4,7 +4,12 @@ export class Book {
     _title;
     _pubYear;
     #price;
-
+/**
+*Создаёт книгу
+*@param {string} title Название книги.
+*@param {number} pubYear Год издания.
+*@param{number} price Цена книги.
+*/
     constructor(title, pubYear, price) {
         this.title = title;
         this.pubYear = pubYear;
@@ -43,7 +48,9 @@ export class Book {
         }
         this.#price = value;
     }
-
+    /**
+    
+    */
     show() {
         console.log(`${this.title}, ${this.#price}`);
     }
